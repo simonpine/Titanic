@@ -1,7 +1,7 @@
 import streamlit as st
 import pickle
+import pandas as pd
 from sklearn.ensemble import AdaBoostClassifier
-
 
 st.image('./titanic.jpg', caption='Titanic banner.')
 
@@ -74,8 +74,23 @@ forPrediction[0] = st.radio(
     [1, 2, 3],
 )
 
-model = pickle.load(open('./trained_model_AdaBoost.pkl', 'rb'))
+# model = pickle.load(open('./trained_model_AdaBoost.pkl', 'rb'))
 
+df_train = pd.read_csv('./train.csv')
+df_train.drop(['Ticket', 'PassengerId', 'Cabin', 'Name'], axis=1, inplace = True)
+df_train['Age'].fillna(df_train['Age'].mean(), inplace = True)
+con_train = pd.get_dummies(df_train[['Sex', 'Embarked']])
+df_train.drop(['Sex', 'Embarked'], axis=1, inplace = True)
+df_train = pd.concat([df_train, con_train], axis='columns')
+df_train['Fare'] = df_train['Fare'].apply(MinMaxScalerFare)
+df_train['Age'] = df_train['Age'].apply(MinMaxScalerAge)
+df_train['SibSp'] = df_train['SibSp'].apply(MinMaxScalerSibSp)
+df_train['Parch'] = df_train['Parch'].apply(MinMaxScalerParch)
+X_train = df_train.drop(['Survived'], axis=1)
+y_train = df_train['Survived']
+
+model = AdaBoostClassifier(algorithm = 'SAMME.R', learning_rate = 1, n_estimators = 150, random_state = None)
+model.fit(X_train, y_train)
 
 if st.button('Predict'):
     if model.predict([forPrediction]):
