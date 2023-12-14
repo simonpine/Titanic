@@ -14,7 +14,6 @@ st.write('## Form:')
 
 forPrediction = [0,0,0,0,0,0,0,0,0,0]
 
-model = pickle.load(open('./trained_model_AdaBoost.pkl', 'rb'))
 a = 0
 b = 512.3292
 A = 0.42
@@ -73,8 +72,10 @@ forPrediction[0] = st.radio(
     [1, 2, 3],
 )
 
-# if st.button('Predict'):
-#     if model.predict([forPrediction]):
-#         st.write('Survived 😍')
-#     else:
-#         st.write('Death 😭')
+model = pickle.load(open('./trained_model_AdaBoost.pkl', 'rb'))
+
+if st.button('Predict'):
+    if model.predict([forPrediction]):
+        st.write('Survived 😍')
+    else:
+        st.write('Death 😭')
