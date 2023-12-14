@@ -1,7 +1,8 @@
 import streamlit as st
 import pickle
-import os 
-os.system('sudo pip install scikit-learn')
+import numpy as np
+import joblib
+
 
 st.image('./titanic.jpg', caption='Titanic banner.')
 
@@ -74,7 +75,9 @@ forPrediction[0] = st.radio(
     [1, 2, 3],
 )
 
-model = pickle.load(open('./trained_model_AdaBoost.pkl', 'rb'))
+# model = pickle.load(open('./trained_model_AdaBoost.pkl', 'rb'))
+model = joblib.load("rf_model.sav")
+
 
 if st.button('Predict'):
     if model.predict([forPrediction]):
