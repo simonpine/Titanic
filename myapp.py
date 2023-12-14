@@ -66,8 +66,8 @@ else:
 forPrediction[4] = MinMaxScalerFare(st.slider('Select the fare you paid:', 0, 600))
 forPrediction[1] = MinMaxScalerAge(st.slider('How old you were:', 0, 100))
 
-forPrediction[3] = MinMaxScalerParch(st.slider('Number of family relations aboard (mother, father, daughter, son, stepdaughter, stepson):', 0, 30))
-forPrediction[2] = MinMaxScalerSibSp(st.slider('Number of family relations aboard (husband, wife, brother, sister, stepbrother, stepsister):', 0, 30))
+forPrediction[3] = MinMaxScalerParch(st.slider('Number of family relations aboard (mother, father, daughter, son, stepdaughter, stepson):', 0, 10))
+forPrediction[2] = MinMaxScalerSibSp(st.slider('Number of family relations aboard (husband, wife, brother, sister, stepbrother, stepsister):', 0, 10))
 
 forPrediction[0] = st.radio(
     "Select the class you were in:",
