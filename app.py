@@ -73,8 +73,8 @@ forPrediction[0] = st.radio(
     [1, 2, 3],
 )
 
-if st.button('Predict'):
-    if model.predict([forPrediction]):
-        st.write('Survived 😍')
-    else:
-        st.write('Death 😭')
+# if st.button('Predict'):
+#     if model.predict([forPrediction]):
+#         st.write('Survived 😍')
+#     else:
+#         st.write('Death 😭')
