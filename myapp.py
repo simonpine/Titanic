@@ -1,5 +1,7 @@
 import streamlit as st
 import pickle
+import os 
+os.system('sudo pip install scikit-learn')
 
 st.image('./titanic.jpg', caption='Titanic banner.')
 
