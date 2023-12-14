@@ -1,5 +1,7 @@
 import streamlit as st
 import pickle
+from sklearn.ensemble import AdaBoostClassifier
+
 
 st.image('./titanic.jpg', caption='Titanic banner.')
 
