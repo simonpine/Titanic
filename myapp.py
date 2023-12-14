@@ -72,8 +72,7 @@ forPrediction[0] = st.radio(
     [1, 2, 3],
 )
 
-# model = pickle.load(open('./trained_model_AdaBoost.pkl', 'rb'))
-model = joblib.load("rf_model.sav")
+model = pickle.load(open('./trained_model_AdaBoost.pkl', 'rb'))
 
 
 if st.button('Predict'):
